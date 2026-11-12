@@ -5,75 +5,253 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kirya Caine | Academic Portfolio</title>
   <style>
+    :root {
+      --navy-dark: #052049;    /* Deep UCSF-style Navy */
+      --navy-mid: #163a70;     /* Accent Navy */
+      --navy-soft: #eef3f9;    /* Soft Ice Blue tint */
+      --border-slate: #cbd6e6;
+      --text-main: #1a2433;
+      --text-muted: #4a5a70;
+    }
+
     body { 
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-      max-width: 600px; 
-      margin: 40px auto; 
+      max-width: 620px; 
+      margin: 36px auto; 
       padding: 0 20px; 
       line-height: 1.6; 
-      color: #222; 
+      color: var(--text-main); 
+      background-color: #f8fafd;
     }
-    h1 { 
-      margin-bottom: 4px; 
+
+    .container {
+      background: #ffffff;
+      border: 1px solid var(--border-slate);
+      border-top: 6px solid var(--navy-dark);
+      border-radius: 10px;
+      padding: 28px 26px;
+      box-shadow: 0 4px 16px rgba(5, 32, 73, 0.06);
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Subtle decorative brain watermark in top-right */
+    .brain-bg {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 120px;
+      height: 120px;
+      color: var(--navy-dark);
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .profile-pic {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--navy-dark);
+      flex-shrink: 0;
+      background-color: var(--navy-soft);
+    }
+
+    .header-text h1 { 
+      margin: 0 0 2px 0; 
+      font-size: 1.65rem;
+      color: var(--navy-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brain-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--navy-mid);
+      flex-shrink: 0;
+    }
+
     p.subtitle { 
-      color: #555; 
-      margin-top: 0; 
-      margin-bottom: 12px;
-      font-weight: 500;
+      color: var(--navy-mid); 
+      margin: 0; 
+      font-weight: 600;
+      font-size: 0.95rem;
     }
+
     p.bio { 
-      color: #444; 
+      color: var(--text-muted); 
       margin-top: 0; 
-      margin-bottom: 28px; 
+      margin-bottom: 18px; 
       font-size: 0.95rem; 
     }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    a.pill {
+      display: inline-block;
+      padding: 7px 15px;
+      background: var(--navy-dark);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: background 0.15s ease;
+    }
+
+    a.pill:hover {
+      background: var(--navy-mid);
+    }
+
+    a.pill.outline {
+      background: #ffffff;
+      color: var(--navy-dark);
+      border: 1.5px solid var(--navy-dark);
+    }
+
+    a.pill.outline:hover {
+      background: var(--navy-soft);
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border-slate);
+    }
+
     a.card { 
       display: block; 
-      padding: 16px 20px; 
-      margin: 14px 0; 
-      background: #f6f8fa; 
-      border: 1px solid #d0d7de; 
-      border-left: 5px solid #0969da;
-      color: #222; 
+      padding: 15px 18px; 
+      margin: 12px 0; 
+      background: var(--navy-soft); 
+      border: 1px solid var(--border-slate); 
+      border-left: 5px solid var(--navy-dark);
+      color: var(--text-main); 
       text-decoration: none; 
       border-radius: 6px; 
-      transition: background 0.15s ease, border-color 0.15s ease;
+      transition: background 0.15s ease, transform 0.1s ease;
     }
+
+    /* Slightly softer slate accent for academic writing cards */
+    a.card.writing {
+      background: #ffffff;
+      border-left: 5px solid var(--navy-mid);
+    }
+
     a.card:hover { 
-      background: #eef4fc; 
-      border-color: #0969da; 
+      background: #e2ebf7; 
+      transform: translateY(-1px);
     }
+
     .card-title { 
       display: block; 
-      font-weight: 600; 
-      font-size: 1.05rem; 
-      color: #0969da; 
+      font-weight: 700; 
+      font-size: 1.02rem; 
+      color: var(--navy-dark); 
       margin-bottom: 4px; 
     }
+
     .card-desc { 
       display: block; 
-      font-size: 0.9rem; 
-      color: #555; 
-      line-height: 1.4;
+      font-size: 0.88rem; 
+      color: var(--text-muted); 
+      line-height: 1.45;
+    }
+
+    @media (max-width: 440px) {
+      .header-row {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header-text h1 {
+        justify-content: center;
+      }
+      .social-links {
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Kirya Caine</h1>
-  <p class="subtitle">NIH-PREP Scholar • UCSF Harwell Lab</p>
-  <p class="bio">
-    Investigating the neural, molecular, and evolutionary basis of behavior, with a focus on social and motivated behaviors.
-  </p>
-  
-  <a class="card" href="Kirya Caine CV.pdf" target="_blank">
-    <span class="card-title">Curriculum Vitae (PDF)</span>
-    <span class="card-desc">Education, research experience, publications, and academic honors as of November 2026.</span>
-  </a>
+  <div class="container">
+    <!-- Subtle background brain illustration -->
+    <svg class="brain-bg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+      <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+    </svg>
 
-  <a class="card" href="KC Stanford Research Conference Poster 04-2025-compressed.pdf" target="_blank">
-    <span class="card-title">SRC 2026 Conference Poster (PDF)</span>
-    <span class="card-desc"> Award Winner the Stanford Research Conference 2026 • updated results incoming....</span>
-  </a>
+    <div class="header-row">
+      <img class="profile-pic" src="profile.jpg" alt="Kirya Caine">
+      <div class="header-text">
+        <h1>
+          Kirya Caine
+          <svg class="brain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+            <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+          </svg>
+        </h1>
+        <p class="subtitle">Associate Specialist • UCSF Harwell Lab</p>
+      </div>
+    </div>
+
+    <p class="bio">
+      Investigating the neural, molecular, and evolutionary basis of behavior, with a focus on social/motivated behaviors. B.S. in Neuroscience, University of Rochester.
+    </p>
+
+    <div class="social-links">
+      <a class="pill" href="https://harwell-lab.org" target="_blank">Harwell Lab</a>
+      <a class="pill" href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a class="pill outline" href="https://github.com" target="_blank">GitHub</a>
+    </div>
+
+    <div class="section-label">CV & Presentations</div>
+    
+    <a class="card" href="Kirya Caine CV.pdf" target="_blank">
+      <span class="card-title">Curriculum Vitae (PDF)</span>
+      <span class="card-desc">Education, research experience, fellowships, and academic honors.</span>
+    </a>
+
+    <a class="card" href="KC Stanford Research Conference Poster 04-2025-compressed.pdf" target="_blank">
+      <span class="card-title">SRC Conference Poster (PDF)</span>
+      <span class="card-desc">Presented at the Stanford Research Conference • updated results incoming....</span>
+    </a>
+
+    <div class="section-label">Academic Writing</div>
+
+    <a class="card writing" href="NeuroEthology of Siblicide Strategies in Seabirds.pdf" target="_blank">
+      <span class="card-title">Neuroethology of Siblicide Strategies in Seabirds (PDF)</span>
+      <span class="card-desc">Mock-grant proposal investigating differential strategies of sibling aggression in closely related species.</span>
+    </a>
+
+    <a class="card writing" href="Sleep Under the Sea.pdf" target="_blank">
+      <span class="card-title">Sleep Under the Sea (PDF)</span>
+      <span class="card-desc">Short talk providing an introduction to the interaction between ecology and the genetics/electrophysiology of sleep.</span>
+    </a>
+
+    <a class="card writing" href="Epigenetics to Treat Alcohol Abuse.pdf" target="_blank">
+      <span class="card-title">Epigenetics to Treat Alcohol Abuse (PDF)</span>
+      <span class="card-desc">Short review, 2024.</span>
+    </a>
+  </div>
 </body>
 </html>
